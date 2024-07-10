@@ -1,0 +1,26 @@
+@if (fetchCinemas$ | async) {}
+@if (pagingValueChanges$ | async) {}
+@if (filterValueChanges$ | async) {}
+
+<h1 class="mat-headline-small">Screenings</h1>
+
+@if (
+  {
+    cinemas: store.cinemas.state$ | async,
+    screenings: store.screenings.state$ | async,
+    loading: store.loading.state$ | async
+  };
+  as vm
+) {
+  @if (vm.cinemas) {
+    <app-screenings-filters [cinemas]="vm.cinemas" (submitFilters)="onSubmitFilters($event)" />
+  }
+
+  @if (vm.screenings) {
+    <app-screenings-list
+      [data]="vm.screenings"
+      [loading]="vm.loading!"
+      (pageChanged)="onPageChanged($event)"
+    />
+  }
+}

@@ -1,0 +1,14 @@
+mat-toolbar {
+  padding: 0;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  flex: 1 0 auto;
+}
+
+.container {
+  display: flex;
+}

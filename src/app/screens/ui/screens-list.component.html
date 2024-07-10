@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table mat-table [dataSource]="data.content">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" />
+    <mat-row *matRowDef="let row; columns: displayedColumns" />
+
+    <tr class="mat-mdc-row" *matNoDataRow>
+      <td class="mat-mdc-cell">
+        @if (!loading) {
+          No screens available
+        }
+      </td>
+    </tr>
+  </table>
+</div>
+
+<mat-paginator
+  [pageIndex]="data.number"
+  [pageSize]="data.size"
+  [length]="data.totalElements"
+  hidePageSize="true"
+  (page)="pageChanged.emit($event)"
+  showFirstLastButtons
+  aria-label="Select page of screens"
+/>
+
+@if (loading) {
+  <mat-progress-bar mode="query" color="accent" data-testId="progress-bar" />
+}

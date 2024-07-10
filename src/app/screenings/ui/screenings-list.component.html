@@ -1,0 +1,53 @@
+<div class="table-responsive">
+  <table mat-table [dataSource]="data.content">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cinema">
+      <mat-header-cell *matHeaderCellDef>Cinema</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.cinemaName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="screen">
+      <mat-header-cell *matHeaderCellDef>Screen</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.screenName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="movie">
+      <mat-header-cell *matHeaderCellDef>Movie</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.movie.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="start">
+      <mat-header-cell *matHeaderCellDef>Start</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.start | date: 'medium' }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" />
+    <mat-row *matRowDef="let row; columns: displayedColumns" />
+
+    <tr class="mat-mdc-row" *matNoDataRow>
+      <td class="mat-mdc-cell">
+        @if (!loading) {
+          No screenings available
+        }
+      </td>
+    </tr>
+  </table>
+</div>
+
+<mat-paginator
+  [pageIndex]="data.number"
+  [pageSize]="data.size"
+  [length]="data.totalElements"
+  hidePageSize="true"
+  (page)="pageChanged.emit($event)"
+  showFirstLastButtons
+  aria-label="Select page of screenings"
+/>
+
+@if (loading) {
+  <mat-progress-bar mode="query" color="accent" data-testId="progress-bar" />
+}

@@ -1,0 +1,10 @@
+@for (stat of stats$ | async; track stat.title) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ stat.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <span class="mat-headline-2">{{ stat.count }}</span>
+    </mat-card-content>
+  </mat-card>
+}

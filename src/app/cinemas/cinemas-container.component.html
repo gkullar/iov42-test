@@ -1,0 +1,23 @@
+@if (fetchData$ | async) {}
+@if (create$ | async) {}
+
+<span class="heading">
+  <h1 class="mat-headline-small">Cinemas</h1>
+  <button mat-raised-button color="accent" (click)="openDialog()">Add cinema</button>
+</span>
+
+@if (
+  {
+    data: store.data.state$ | async,
+    loading: store.loading.state$ | async
+  };
+  as vm
+) {
+  @if (vm.data) {
+    <app-cinemas-list
+      [data]="vm.data"
+      [loading]="vm.loading!"
+      (pageChanged)="onPageChanged($event)"
+    />
+  }
+}

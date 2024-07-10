@@ -1,0 +1,12 @@
+@if (filtersTrigger$ | async) {}
+
+<form [formGroup]="form" autocomplete="off" novalidate>
+  <mat-form-field>
+    <mat-label>Cinema</mat-label>
+    <mat-select formControlName="cinemaId">
+      @for (cinema of cinemas; track cinema.id) {
+        <mat-option [value]="cinema.id">{{ cinema.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</form>

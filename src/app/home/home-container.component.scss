@@ -1,0 +1,14 @@
+$spacing: 32px;
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: $spacing;
+  row-gap: $spacing;
+  width: 100%;
+}
+
+mat-card {
+  width: calc(50% - #{$spacing} / 2);
+}

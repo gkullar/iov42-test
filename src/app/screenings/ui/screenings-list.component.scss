@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+
+  @include mat.elevation(2);
+}
